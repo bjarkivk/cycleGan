@@ -1,4 +1,7 @@
 import tensorflow_datasets as tfds
+from numpy import asarray
+from numpy import vstack
+
 
 # images is a python dictionary
 def load_images(images):
