@@ -11,7 +11,7 @@ def load_images(images):
 def load_dataset(dataset):
     dir = 'cycle_gan/'+dataset
     ds = tfds.load(dir, with_info=False)
-    ds = tfds.as_numpy(df)
+    ds = tfds.as_numpy(ds)
 
     trainA = load_images(ds['trainA'])
     testA = load_images(ds['testA'])
