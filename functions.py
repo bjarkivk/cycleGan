@@ -37,3 +37,10 @@ def generate_real_samples(data, n_samples):
 	# generate 'real' class labels (1)
 	y = ones(n_samples)
 	return X, y
+
+def generate_fake_samples(g_model, data):
+	# generate fake instance
+	X = g_model.predict(dataset)
+	# create 'fake' class labels (0)
+	y = zeros(len(X))
+	return X, y
