@@ -7,7 +7,7 @@ from numpy import vstack
 def load_images(images):
     data_list = list()
     for image in images:
-        data_list.append(image['image'])
+        data_list.append(image['image'].T)
     return asarray(data_list)
 
 # returns dataA(apples) and dataB(oranges)
