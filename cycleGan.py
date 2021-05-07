@@ -1,4 +1,5 @@
 import torch
+from Base_Model import BaseModel
 
 class CycleGANModel(BaseModel):
 
