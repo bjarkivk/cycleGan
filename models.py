@@ -28,7 +28,7 @@ def init_weights(net, init_gain=0.02):
             if hasattr(m, 'bias') and m.bias is not None:
                 init.constant_(m.bias.data, 0.0)
 
-    print('initialize network with %s' % init_type)
+    print('initialize network')
     net.apply(init_func)  # apply the initialization function <init_func>
 
 
