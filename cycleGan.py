@@ -5,7 +5,7 @@ class CycleGANModel(BaseModel):
 
     def __init__(self, opt):
 
-        BaseModel.__init__(self, opt)
+        #BaseModel.__init__(self, opt)
         self.losses = ['D_1', 'G_1', 'D_2', 'G_2','cycle_1','cycle_2']
         # define models
         self.generator_X = models.Generator(input_size,output_size)
