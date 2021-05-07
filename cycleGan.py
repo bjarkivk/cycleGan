@@ -15,7 +15,7 @@ class CycleGANModel(BaseModel):
         self.discriminator_Y = models.Discriminator(3, 64, 'a', n_layers_D=3, init_type='normal', init_gain=0.02, gpu_ids=[])
         
         # define loss functions
-        self.ganLoss = models.GANLoss()
+        self.ganLoss = models.GANLoss('lsgan')
         self.cycleLoss = torch.nn.L1Loss()
         # define optimizers
         self.optimizer_G = torch.optim.Adam(itertools.chain(self.generator_X.parameters(), self.generator_Y.parameters()), lr=opt.lr, betas=(opt.beta1, 0.999))
