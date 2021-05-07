@@ -56,7 +56,7 @@ def init_net(net, init_type='normal', init_gain=0.02, gpu_ids=[]):
     return net
 
 
-def Generator(input_nc, output_nc, ngf,  norm='batch', use_dropout=False, init_type='normal', init_gain=0.02, gpu_ids=[]):
+def Generator(input_nc, output_nc, ngf,  use_dropout=False, init_type='normal', init_gain=0.02, gpu_ids=[]):
     """Create a generator
     Parameters:
         input_nc (int) -- the number of channels in input images
@@ -70,12 +70,12 @@ def Generator(input_nc, output_nc, ngf,  norm='batch', use_dropout=False, init_t
         gpu_ids (int list) -- which GPUs the network runs on: e.g., 0,1,2
     Returns a 9 Resnet block generator
     """
-    norm_layer = get_norm_layer(norm_type=norm)
+    norm_layer = get_norm_layer()
     net = ResnetGenerator(input_nc, output_nc, ngf, norm_layer=norm_layer, use_dropout=use_dropout, n_blocks=9)
     return init_net(net, init_type, init_gain, gpu_ids)
 
 
-def Discriminator(input_nc, ndf, netD, n_layers_D=3, norm='batch', init_type='normal', init_gain=0.02, gpu_ids=[]):
+def Discriminator(input_nc, ndf, netD, n_layers_D=3, init_type='normal', init_gain=0.02, gpu_ids=[]):
     """Create a discriminator
     Parameters:
         input_nc (int)     -- the number of channels in input images
@@ -89,7 +89,7 @@ def Discriminator(input_nc, ndf, netD, n_layers_D=3, norm='batch', init_type='no
     Returns a 'PatchGAN' discriminator
     """
    
-    norm_layer = get_norm_layer(norm_type=norm)
+    norm_layer = get_norm_layer()
     net = NLayerDiscriminator(input_nc, ndf, n_layers=3, norm_layer=norm_layer)
     return init_net(net, init_type, init_gain, gpu_ids)
 
