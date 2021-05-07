@@ -10,10 +10,10 @@ class CycleGANModel(BaseModel):
         #BaseModel.__init__(self, opt)
         self.losses = ['D_1', 'G_1', 'D_2', 'G_2','cycle_1','cycle_2']
         # define models
-        self.generator_X = models.Generator(3, 3, 64, use_dropout=False, init_type='normal', init_gain=0.02, gpu_ids=[])
-        self.generator_Y = models.Generator(3, 3, 64, use_dropout=False, init_type='normal', init_gain=0.02, gpu_ids=[])
-        self.discriminator_X = models.Discriminator(3, 64, 'a', n_layers_D=3, init_type='normal', init_gain=0.02, gpu_ids=[])
-        self.discriminator_Y = models.Discriminator(3, 64, 'a', n_layers_D=3, init_type='normal', init_gain=0.02, gpu_ids=[])
+        self.generator_X = models.Generator(3, 3, 64, use_dropout=False,  init_gain=0.02, gpu_ids=[])
+        self.generator_Y = models.Generator(3, 3, 64, use_dropout=False, init_gain=0.02, gpu_ids=[])
+        self.discriminator_X = models.Discriminator(3, 64, n_layers_D=3, init_gain=0.02, gpu_ids=[])
+        self.discriminator_Y = models.Discriminator(3, 64, n_layers_D=3, init_gain=0.02, gpu_ids=[])
         
         # define loss functions
         self.ganLoss = models.GANLoss('lsgan')
