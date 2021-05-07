@@ -10,7 +10,7 @@ class Identity(nn.Module):
         return x
 
 
-def get_norm_layer(norm_type='instance'):
+def get_norm_layer():
     """Returns an instance normalization layer"""
     norm_layer = functools.partial(nn.InstanceNorm2d, affine=False, track_running_stats=False)
     return norm_layer
