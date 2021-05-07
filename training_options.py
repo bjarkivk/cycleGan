@@ -17,6 +17,8 @@ class TrainOptions():
         self.batch_size = 1
         self.gan_mode = 'lsgan'
         self.isTrain = True
+        self.continue_train = False
+        self.load_iter = 0
 
         #parser.add_argument('--serial_batches', action='store_true', help='if true, takes images in order to make batches, otherwise takes them randomly')
         #parser.add_argument('--num_threads', default=4, type=int, help='# threads for loading data')
