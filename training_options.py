@@ -21,6 +21,7 @@ class TrainOptions():
         self.load_iter = 0
         self.name = 'cGAN'
         self.lr = 0.0002
+        self.beta1 = 0.5
 
         #parser.add_argument('--serial_batches', action='store_true', help='if true, takes images in order to make batches, otherwise takes them randomly')
         #parser.add_argument('--num_threads', default=4, type=int, help='# threads for loading data')
