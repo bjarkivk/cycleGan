@@ -1,9 +1,9 @@
 class TrainOptions():
 
-    def __init__(self, n_epochs=10, epoch_count=0, n_epochs_decays=0):
+    def __init__(self, n_epochs=10, epoch_count=0, n_epochs_decay=100):
         self.n_epochs = n_epochs
         self.epoch_count = epoch_count
-        self.n_epochs_decays = n_epochs_decays
+        self.n_epochs_decay = n_epochs_decay
         self.gpu_ids = 0
         self.checkpoints_dir = './checkpoints'
         self.model = 'cycle_gan'
