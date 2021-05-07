@@ -68,14 +68,7 @@ def Generator(input_nc, output_nc, ngf,  norm='batch', use_dropout=False, init_t
         init_type (str)    -- the name of our initialization method.
         init_gain (float)  -- scaling factor for normal, xavier and orthogonal.
         gpu_ids (int list) -- which GPUs the network runs on: e.g., 0,1,2
-    Returns a generator
-    Our current implementation provides two types of generators:
-        U-Net: [unet_128] (for 128x128 input images) and [unet_256] (for 256x256 input images)
-        The original U-Net paper: https://arxiv.org/abs/1505.04597
-        Resnet-based generator: [resnet_6blocks] (with 6 Resnet blocks) and [resnet_9blocks] (with 9 Resnet blocks)
-        Resnet-based generator consists of several Resnet blocks between a few downsampling/upsampling operations.
-        We adapt Torch code from Justin Johnson's neural style transfer project (https://github.com/jcjohnson/fast-neural-style).
-    The generator has been initialized by <init_net>. It uses RELU for non-linearity.
+    Returns a 9 Resnet block generator
     """
     norm_layer = get_norm_layer(norm_type=norm)
     net = ResnetGenerator(input_nc, output_nc, ngf, norm_layer=norm_layer, use_dropout=use_dropout, n_blocks=9)
@@ -93,18 +86,7 @@ def Discriminator(input_nc, ndf, netD, n_layers_D=3, norm='batch', init_type='no
         init_type (str)    -- the name of the initialization method.
         init_gain (float)  -- scaling factor for normal, xavier and orthogonal.
         gpu_ids (int list) -- which GPUs the network runs on: e.g., 0,1,2
-    Returns a discriminator
-    Our current implementation provides three types of discriminators:
-        [basic]: 'PatchGAN' classifier described in the original pix2pix paper.
-        It can classify whether 70×70 overlapping patches are real or fake.
-        Such a patch-level discriminator architecture has fewer parameters
-        than a full-image discriminator and can work on arbitrarily-sized images
-        in a fully convolutional fashion.
-        [n_layers]: With this mode, you can specify the number of conv layers in the discriminator
-        with the parameter <n_layers_D> (default=3 as used in [basic] (PatchGAN).)
-        [pixel]: 1x1 PixelGAN discriminator can classify whether a pixel is real or not.
-        It encourages greater color diversity but has no effect on spatial statistics.
-    The discriminator has been initialized by <init_net>. It uses Leakly RELU for non-linearity.
+    Returns a 'PatchGAN' discriminator
     """
    
     norm_layer = get_norm_layer(norm_type=norm)
@@ -124,10 +106,9 @@ class GANLoss(nn.Module):
     def __init__(self, gan_mode, target_real_label=1.0, target_fake_label=0.0):
         """ Initialize the GANLoss class.
         Parameters:
-            gan_mode (str) - - the type of GAN objective. It currently supports vanilla, lsgan, and wgangp.
+            gan_mode (str) - - the type of GAN objective. It currently supports vanilla, lsgan.
             target_real_label (bool) - - label for a real image
             target_fake_label (bool) - - label of a fake image
-        Note: Do not use sigmoid as the last layer of Discriminator.
         LSGAN needs no sigmoid. vanilla GANs will handle it with BCEWithLogitsLoss.
         """
         super(GANLoss, self).__init__()
@@ -169,7 +150,6 @@ class GANLoss(nn.Module):
 
 class ResnetGenerator(nn.Module):
     """Resnet-based generator that consists of Resnet blocks between a few downsampling/upsampling operations.
-    We adapt Torch code and idea from Justin Johnson's neural style transfer project(https://github.com/jcjohnson/fast-neural-style)
     """
 
     def __init__(self, input_nc, output_nc, ngf=64, norm_layer=nn.BatchNorm2d, use_dropout=False, n_blocks=9, padding_type='reflect'):
@@ -226,12 +206,7 @@ class ResnetBlock(nn.Module):
     """Define a Resnet block"""
 
     def __init__(self, dim, padding_type, norm_layer, use_dropout, use_bias):
-        """Initialize the Resnet block
-        A resnet block is a conv block with skip connections
-        We construct a conv block with build_conv_block function,
-        and implement skip connections in <forward> function.
-        Original Resnet paper: https://arxiv.org/pdf/1512.03385.pdf
-        """
+        """Initialize the Resnet block"""
         super(ResnetBlock, self).__init__()
         self.conv_block = self.build_conv_block(dim, padding_type, norm_layer, use_dropout, use_bias)
 
