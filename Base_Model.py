@@ -52,13 +52,13 @@ class BaseModel(ABC):
         """
         return parser
 
-    @abstractmethod
-    def set_input(self, input):
-        """Unpack input data from the dataloader and perform necessary pre-processing steps.
-        Parameters:
-            input (dict): includes the data itself and its metadata information.
-        """
-        pass
+    #@abstractmethod
+    #def set_input(self, input):
+    #    """Unpack input data from the dataloader and perform necessary pre-processing steps.
+    #    Parameters:
+    #        input (dict): includes the data itself and its metadata information.
+    #    """
+    #    pass
 
     @abstractmethod
     def forward(self):
