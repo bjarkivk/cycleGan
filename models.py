@@ -11,13 +11,13 @@ class Identity(nn.Module):
 
 
 def get_norm_layer(norm_type='instance'):
-  "Returns an instance normalization layer"
-      norm_layer = functools.partial(nn.InstanceNorm2d, affine=False, track_running_stats=False)
+    """Returns an instance normalization layer"""
+    norm_layer = functools.partial(nn.InstanceNorm2d, affine=False, track_running_stats=False)
     return norm_layer
 
 
 def get_scheduler(optimizer, opt):
-    "Return a learning rate scheduler"
+    """Return a learning rate scheduler"""
     def lambda_rule(epoch):
         lr_l = 1.0 - max(0, epoch + opt.epoch_count - opt.n_epochs) / float(opt.n_epochs_decay + 1)
         return lr_l
@@ -26,7 +26,7 @@ def get_scheduler(optimizer, opt):
 
 
 def init_weights(net, init_type='normal', init_gain=0.02):
-    """Initialize network weights. Possibilities are 'Normal' and 'Xavier'""".
+    """Initialize network weights. Possibilities are 'Normal' and 'Xavier'"""
     def init_func(m):  # define the initialization function
         if init_type == 'normal':
             init.normal_(m.weight.data, 0.0, init_gain)
