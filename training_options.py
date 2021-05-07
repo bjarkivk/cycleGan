@@ -4,3 +4,4 @@ class TrainOptions():
         self.n_epochs = n_epochs
         self.epoch_count = epoch_count
         self.n_epochs_decays = n_epochs_decays
+        self.gpu_ids = 0
