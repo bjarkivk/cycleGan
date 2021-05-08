@@ -1,13 +1,11 @@
 import torch
 import models
-from Base_Model import BaseModel
 import itertools
 
-class CycleGANModel(BaseModel):
+class CycleGANModel():
 
     def __init__(self, opt):
 
-        #BaseModel.__init__(self, opt)
         self.losses = ['D_1', 'G_1', 'D_2', 'G_2','cycle_1','cycle_2']
         # define models
         self.generator_X = models.Generator(3, 3, 64, use_dropout=False,  init_gain=0.02, gpu_ids=[])
