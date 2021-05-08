@@ -13,7 +13,7 @@ class TrainOptions():
         self.ndf = 64
         self.init_type = 'normal'
         self.init_gain = 0.02
-        self.direction = 'AtoB'
+        self.direction = 'XtoY'
         self.batch_size = 1
         self.gan_mode = 'lsgan'
         self.isTrain = True
