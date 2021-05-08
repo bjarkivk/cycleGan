@@ -22,6 +22,7 @@ class CycleGANModel():
         self.optimizers = []
         self.optimizers.append(self.optimizer_G)
         self.optimizers.append(self.optimizer_D)
+        self.schedulers = [models.get_scheduler(optimizer, opt) for optimizer in self.optimizers]
 
 
     def forward(self):
