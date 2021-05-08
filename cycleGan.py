@@ -21,6 +21,7 @@ class CycleGANModel(BaseModel):
         # define optimizers
         self.optimizer_G = torch.optim.Adam(itertools.chain(self.generator_X.parameters(), self.generator_Y.parameters()), lr=opt.lr, betas=(opt.beta1, 0.999))
         self.optimizer_D = torch.optim.Adam(itertools.chain(self.discriminator_X.parameters(), self.discriminator_Y.parameters()), lr=opt.lr, betas=(opt.beta1, 0.999))
+        self.optimizers = []
         self.optimizers.append(self.optimizer_G)
         self.optimizers.append(self.optimizer_D)
 
