@@ -17,7 +17,7 @@ See frequently asked questions at: https://github.com/junyanz/pytorch-CycleGAN-a
 import time
 from options.train_options import TrainOptions
 from data import create_dataset
-from models import create_model
+#from models import create_model
 from util.visualizer import Visualizer
 from cycleGan import *
 
