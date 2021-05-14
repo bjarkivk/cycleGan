@@ -4,7 +4,7 @@
           checkpoints_dir: ./checkpoints                 
            continue_train: False                         
                 crop_size: 256                           
-                 dataroot: apple2orange                  	[default: None]
+                 dataroot: apple2orange                  	[default: /content/cycleGan/apple2orange]
              dataset_mode: unaligned                     
                 direction: AtoB                          
               display_env: main                          
@@ -22,6 +22,9 @@
                 init_type: normal                        
                  input_nc: 3                             
                   isTrain: True                          	[default: None]
+                 lambda_A: 10                            
+                 lambda_B: 10                            
+          lambda_identity: 0.5                           
                 load_iter: 0                             	[default: 0]
                 load_size: 286                           
                        lr: 0.0002                        
