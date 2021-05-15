@@ -45,7 +45,7 @@ if __name__ == '__main__':
         for i, data in enumerate(dataset):  # inner loop within one epoch
             iter_start_time = time.time()  # timer for computation per iteration
 
-
+            print("total_iters:  "+str(total_iters))
             total_iters += opt.batch_size
             epoch_iter += opt.batch_size
             model.set_input(data)         # unpack data from dataset and apply preprocessing
