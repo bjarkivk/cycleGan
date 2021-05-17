@@ -4,6 +4,7 @@ from data import create_dataset
 from models import create_model
 from util.visualizer import save_images
 from util import html
+from cycleGan import *
 
 
 if __name__ == '__main__':
@@ -15,7 +16,7 @@ if __name__ == '__main__':
     opt.no_flip = True    # no flip; comment this line if results on flipped images are needed.
     opt.display_id = -1   # no visdom display; the test code saves the results to a HTML file.
     dataset = create_dataset(opt)  # create a dataset given opt.dataset_mode and other options
-    model = create_model(opt)      # create a model given opt.model and other options
+    model = CycleGANModel(opt)
     model.setup(opt)               # regular setup: load and print networks; create schedulers
     # create a website
     web_dir = os.path.join(opt.results_dir, opt.name, '{}_{}'.format(opt.phase, opt.epoch))  # define the website directory
